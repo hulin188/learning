@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:p="http://www.springframework.org/schema/p"
+      xmlns:context="http://www.springframework.org/schema/context"
+	  xsi:schemaLocation="http://www.springframework.org/schema/beans 
+  						http://www.springframework.org/schema/beans/spring-beans.xsd
+  						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context/spring-context-4.0.xsd">     
+	<bean id="target" class="com.hulin.ArtistImpl" />
+	<bean id="beforeAdvice" class="com.hulin.MyBeforeAdvice" />
+	<bean id="afterAdvice" class="com.hulin.MyAfterAdvice" />
+	<bean id="artist" class="org.springframework.aop.framework.ProxyFactoryBean"
+		p:proxyInterfaces="com.hulin.Artist"
+		p:interceptorNames="beforeAdvice,afterAdvice"
+		p:target-ref="target"
+		p:proxyTargetClass="true"/>
+</beans>						     
